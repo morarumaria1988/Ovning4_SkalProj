@@ -51,7 +51,7 @@ F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andr
         return x.MyValue;
     }
     
-public class MyInt  
+    public class MyInt  
 {  
     public int MyValue;  
 }
