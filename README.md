@@ -29,7 +29,7 @@ F: 2 Vad är Value Types respektive Reference Types och vad skiljer dem åt?
 • string  
   En reference type lagras alltid på heapen. Medan Value types, lagras där de deklareras. Om de deklareras i en metod, lagras de i stacken, om i en class, i heapen. Alltså kan value types lagras både på stacken eller heapen.
    
-F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför? 
+F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?  
     public static int ReturnValue()
     {
         int x = new int();
@@ -56,7 +56,7 @@ public class MyInt
     public int MyValue;
 }
 
-S: Eftersom i den första metoden x och y är value types (värdetyper) variabler. En variabel av en värdetyp innehåller en instans av typen int. Detta skiljer sig från en variabel av en referenstyp (de som finns i andra metoden), som innehåller referenser till 2 instanser av typen MyInt. Men y på rad 48 börjar peka endast på samma objektinstans som x, så när y.MyValue blir samma som x.MyValue eftersom de refererar till samma objekt som finns i heapen.
+S: Eftersom i den första metoden x och y är value types (värdetyper) variabler. En variabel av en värdetyp innehåller en instans av typen int. Detta skiljer sig från en variabel av en referenstyp (de som finns i andra metoden), som innehåller referenser till 2 instanser av typen MyInt. När y = x börjar y peka endast på samma objektinstans som x, så y.MyValue blir lika med x.MyValue eftersom de refererar till samma objekt som finns i heapen.
 Variabler av referenstyper lagrar referenser till deras data (objekt), medan variabler av värdetyper direkt innehåller deras data. Med referenstyper kan två variabler referera till samma objekt; därför kan operationer på en variabel påverka objektet som den andra variabeln refererar till. Med värdetyper har varje variabel sin egen kopia av data, och det är inte möjligt för operationer på en variabel att påverka den andra (förutom när det gäller parametervariabler in, ref och out).
 
 Källhänvisning:  
