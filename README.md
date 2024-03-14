@@ -5,8 +5,29 @@ Stacken har koll på vilka anrop och metoder som körs, när metoden är körd k
 Heapen däremot som håller stor del av informationen (men inte har någon koll på exekveringsordning) behöver Garbage Collection för att frigöra utrymme i minnet.
 
 F: 2 Vad är Value Types respektive Reference Types och vad skiljer dem åt?  
-  
-   Value types lagras dir 
+  Value Types är typer från System.ValueType som listas nedan:  
+• bool
+• byte 
+• char
+• decimal
+• double
+• enum
+• float
+• int
+• long
+• sbyte
+• short
+• struct
+• uint
+• ulong
+• ushort
+  Reference Types är typer som ärver från System.Object (eller är System.Object.object)  
+• class
+• interface
+• object
+• delegate
+• string
+  En reference type lagras alltid på heapen. Medan Value types, lagras där de deklareras. Om de deklareras i en metod, lagras de i stacken, om i en class, i heapen. Alltså kan value types lagras både på stacken eller heapen.
    
 3. Följande metoder (se bild nedan) genererar olika svar. Den första returnerar 3, den 
 andra returnerar 4, varför? 
