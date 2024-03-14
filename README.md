@@ -30,14 +30,14 @@ F: 2 Vad är Value Types respektive Reference Types och vad skiljer dem åt?
   En reference type lagras alltid på heapen. Medan Value types, lagras där de deklareras. Om de deklareras i en metod, lagras de i stacken, om i en class, i heapen. Alltså kan value types lagras både på stacken eller heapen.
    
 F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?  
-    public static int ReturnValue()
-    {
-        int x = new int();
-        x = 3;
-        int y = new int();
-        y = x;
-        y = 4;
-        return x;
+    public static int ReturnValue()  
+    {  
+        int x = new int();  
+        x = 3;  
+        int y = new int();  
+        y = x;  
+        y = 4;  
+        return x;  
     }  
 
     public static int ReturnValue2()
@@ -50,9 +50,9 @@ F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andr
         return x.MyValue;
     }
 
-public class MyInt
-{
-    public int MyValue;
+public class MyInt  
+{  
+    public int MyValue;  
 }
 
 S: Eftersom i den första metoden x och y är value types (värdetyper) variabler. En variabel av en värdetyp innehåller en instans av typen int. Detta skiljer sig från en variabel av en referenstyp (de som finns i andra metoden), som innehåller referenser till 2 instanser av typen MyInt. När y = x börjar y peka endast på samma objektinstans som x, så y.MyValue blir lika med x.MyValue eftersom de refererar till samma objekt som finns i heapen.
