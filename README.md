@@ -31,7 +31,7 @@ F: 2 Vad är Value Types respektive Reference Types och vad skiljer dem åt?
    
 F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?  
     public static int ReturnValue()
-    {
+    {  
         int x = new int();
         x = 3;
         int y = new int();
