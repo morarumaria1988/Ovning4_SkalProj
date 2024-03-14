@@ -30,6 +30,7 @@ F: 2 Vad är Value Types respektive Reference Types och vad skiljer dem åt?
   En reference type lagras alltid på heapen. Medan Value types, lagras där de deklareras. Om de deklareras i en metod, lagras de i stacken, om i en class, i heapen. Alltså kan value types lagras både på stacken eller heapen.
    
 F: 3. Följande metoder genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?  
+
     public static int ReturnValue()  
     {  
         int x = new int();  
