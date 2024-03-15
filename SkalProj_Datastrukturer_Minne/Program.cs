@@ -93,7 +93,7 @@ namespace SkalProj_Datastrukturer_Minne
                         examineList = false;
                         break;
                     default:
-                        Console.WriteLine("Use only + or - in front!");
+                        Console.WriteLine("Use only + or - in the front!");
                         break;
                 }
             }
