@@ -109,9 +109,9 @@ Detta gör att listan kan hantera en ökande mängd data effektivt utan att beh�
 5. Minskar kapaciteten när element tas bort ur listan?
 Nej.
 6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista?
-•	När man ska ha en fast kapacitet och vet exakt hur stor den ska vara.
-•	Om man har mycket stora datamängder och prestanda är avgörande.  Direkt åtkomst till element i en array är snabbare eftersom det inte finns någon overhead för metoder som Add, Remove, etc. 
-•	Om man behöver finjustera minnesanvändningen och hantera minnet manuellt. Man har full kontroll över minnesallokering och frigöring.
+•  När man ska ha en fast kapacitet och vet exakt hur stor den ska vara.
+•  Om man har mycket stora datamängder och prestanda är avgörande.  Direkt åtkomst till element i en array är snabbare eftersom det inte finns  någon overhead för metoder som Add, Remove, etc. 
+•  Om man behöver finjustera minnesanvändningen och hantera minnet manuellt. Man har full kontroll över minnesallokering och frigöring.
              */
         }
 
@@ -125,6 +125,32 @@ Nej.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            bool examineQueue = true;
+            Queue<string> theQueue = new Queue<string>();
+            Console.WriteLine("Write a name with + as prefix to add it at the end of the queue, - to remove the name from the front of it or only 0 to return to the main menu.");
+            while (examineQueue)
+            {
+                Console.WriteLine("Köns kapacitet är just nu: " + theQueue.); 
+                Console.WriteLine("Köns storlek är just nu: " + theQueue.Count);
+                string input = Console.ReadLine()!;
+                char nav = input[0];
+                string name = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        theQueue.Enqueue(name);
+                        break;
+                    case '-':
+                        theQueue.Dequeue();
+                        break;
+                    case '0':
+                        examineQueue = false;
+                        break;
+                    default:
+                        Console.WriteLine("Use only + or - ");
+                        break;
+                }
+            }
         }
 
         /// <summary>
