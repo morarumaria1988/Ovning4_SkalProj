@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -220,35 +221,61 @@ Nej.
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
             Stack<char> stack = new Stack<char>();
-            Queue<char> queue = new Queue<char>();
             Console.WriteLine("Write a text with paranthesis: ");
             string input = Console.ReadLine()!;
+            bool correct = true;
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == '(' || input[i] == ')' ||
-                    input[i] == '[' || input[i] == ']' ||
-                    input[i] == '{' || input[i] == '}')
+                if (input[i] == '(')
                 {
-                    stack.Push(input[i]);
-                    queue.Enqueue(input[i]);
+                    stack.Push('(');
+                }
+                if (input[i] == ')')
+                {
+                    if (stack.Peek() == '(')
+                        stack.Pop();
+                    else
+                    {
+                        correct = false;
+                        break;
+                    }
+                }
+                if (input[i] == '[')
+                {
+                    stack.Push('[');
+                }
+                if (input[i] == ']')
+                {
+                    if (stack.Peek() == '[')
+                        stack.Pop();
+                    else
+                    {
+                        correct = false;
+                        break;
+                    }
+                }
+                if (input[i] == '{')
+                {
+                    stack.Push('{');
+                }
+                if (input[i] == '}')
+                {
+                    if (stack.Peek() == '{')
+                        stack.Pop();
+                    else
+                    {
+                        correct = false;
+                        break;
+                    }
                 }
             }
-            bool correct = true;
-            List<char> stackList = new List<char>();
-            stackList = stack.ToList();
-            List<char> queueList = new List<char>();
-            queueList = queue.ToList();
-            for (int i = 0; i < stackList.Count; i++)
+            if (stack.Count > 0)
             {
-                if (stackList[i] != queueList[i])
-                    correct = false;
-                break;
-
+                correct = false;
             }
             if (correct)
                 Console.WriteLine("Paranthesis in this string is Correct!");
             else Console.WriteLine("Paranthesis in this string is Incorrect!");
-
         }
 
     }
