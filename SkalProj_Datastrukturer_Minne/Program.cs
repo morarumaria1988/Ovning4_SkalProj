@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -13,11 +14,12 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
-                    + "\n4. CheckParenthesis"
+                    + "\n4. Check Parenthesis"
+                    + "\n7. Reverse a Text"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -37,12 +39,15 @@ namespace SkalProj_Datastrukturer_Minne
                     case '2':
                         ExamineQueue();
                         break;
-                    //case '3':
-                    //    ExamineStack();
-                    //    break;
-                    //case '4':
-                    //    CheckParanthesis();
-                    //    break;
+                    case '3':
+                        ExamineStack();
+                        break;
+                    case '4':
+                        CheckParanthesis();
+                        break;
+                    case '7':
+                        ReverseText();
+                        break;
                     /*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
@@ -73,11 +78,11 @@ namespace SkalProj_Datastrukturer_Minne
             */
             bool examineList = true;
             List<string> theList = new List<string>();
-            Console.WriteLine("Write something with + as prefix to add it to the list, with - to remove it or only 0 to return to the main menu.");
+            Console.WriteLine("Write something with + prefix to add it to the list, with - to remove it or only 0 to return to the main menu.");
             while (examineList)
             {
-                Console.WriteLine("Listans kapacitet är just nu: " + theList.Capacity);
-                Console.WriteLine("Listans storlek är just nu: " + theList.Count);
+                //Console.WriteLine("Listans kapacitet är just nu: " + theList.Capacity);
+                //Console.WriteLine("Listans storlek är just nu: " + theList.Count);
                 string input = Console.ReadLine()!;
                 char nav = input[0];
                 string value = input.Substring(1);
@@ -127,7 +132,7 @@ Nej.
             */
             bool examineQueue = true;
             Queue<string> theQueue = new Queue<string>();
-            Console.WriteLine("Write a name with + as prefix to add it at the end of the queue, - to remove the name from the front of it or only 0 to return to the main menu.");
+            Console.WriteLine("Write a name with + prefix to add it at the end of the queue, - to remove the name from the front of it or only 0 to return to the main menu.");
             while (examineQueue)
             {
                 string input = Console.ReadLine()!;
@@ -149,7 +154,7 @@ Nej.
                         break;
                 }
             }
-            /* After debugging the queue, I saw that it behaves exactly as a list regarding the size (Count) and the capacity. Enqueuing is the same as Add in a list. Dequing is removing the first element in the queue (that is at index 0, in other words, that was enqueued earliest in order).
+            /* After debugging the queue, I saw that it behaves exactly as a list regarding the size (Count) and the capacity. Enqueuing is the same as Add in a list. Dequeuing is removing the element that was enqueued earliest being at index 0 in the underlying array.
              */
         }
 
@@ -163,6 +168,48 @@ Nej.
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            bool examineStack = true;
+            Stack<string> theStack = new Stack<string>();
+            Console.WriteLine("Write a name with + prefix to add it to the stack, - to remove the last added from the stack or only 0 to return to the main menu.");
+            while (examineStack)
+            {
+                string input = Console.ReadLine()!;
+                char nav = input[0];
+                string name = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        theStack.Push(name);
+                        break;
+                    case '-':
+                        theStack.Pop();
+                        break;
+                    case '0':
+                        examineStack = false;
+                        break;
+                    default:
+                        Console.WriteLine("Use only + or - ");
+                        break;
+                }
+            }
+            /* After debugging the stack, I saw that it behaves exactly as a list regarding the size (Count) and the capacity. Pushing is adding elements in reverse order in the underlying array. The last element is always added at index 0, pushing the earlier added elements to newer indexes. Poping is removing the last added element in the stack being at index 0. That's why is not a good ideea to simulate an ICA queue on a stack (it is not first in first out, but last in, first out order).
+             */
+        }
+
+        static void ReverseText()
+        {
+            Stack<char> stack = new Stack<char>();
+            Console.WriteLine("Write a text that you want to see it printed in the reverse order: ");
+            string input = Console.ReadLine()!;
+            for(int i = 0; i < input.Length; i++) 
+            {
+                stack.Push(input[i]);
+            }
+            foreach (var elem in stack)
+            {
+                Console.Write(elem);
+            }
+            Console.WriteLine();
         }
 
         static void CheckParanthesis()
