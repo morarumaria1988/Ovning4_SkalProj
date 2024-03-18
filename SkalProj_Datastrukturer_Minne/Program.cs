@@ -201,7 +201,7 @@ Nej.
             Stack<char> stack = new Stack<char>();
             Console.WriteLine("Write a text that you want to see it printed in the reverse order: ");
             string input = Console.ReadLine()!;
-            for(int i = 0; i < input.Length; i++) 
+            for (int i = 0; i < input.Length; i++)
             {
                 stack.Push(input[i]);
             }
@@ -219,6 +219,35 @@ Nej.
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            Stack<char> stack = new Stack<char>();
+            Queue<char> queue = new Queue<char>();
+            Console.WriteLine("Write a text with paranthesis: ");
+            string input = Console.ReadLine()!;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == '(' || input[i] == ')' ||
+                    input[i] == '[' || input[i] == ']' ||
+                    input[i] == '{' || input[i] == '}')
+                {
+                    stack.Push(input[i]);
+                    queue.Enqueue(input[i]);
+                }
+            }
+            bool correct = true;
+            List<char> stackList = new List<char>();
+            stackList = stack.ToList();
+            List<char> queueList = new List<char>();
+            queueList = queue.ToList();
+            for (int i = 0; i < stackList.Count; i++)
+            {
+                if (stackList[i] != queueList[i])
+                    correct = false;
+                break;
+
+            }
+            if (correct)
+                Console.WriteLine("Paranthesis in this string is Correct!");
+            else Console.WriteLine("Paranthesis in this string is Incorrect!");
 
         }
 
