@@ -34,9 +34,9 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         ExamineList();
                         break;
-                    //case '2':
-                    //    ExamineQueue();
-                    //    break;
+                    case '2':
+                        ExamineQueue();
+                        break;
                     //case '3':
                     //    ExamineStack();
                     //    break;
@@ -130,8 +130,6 @@ Nej.
             Console.WriteLine("Write a name with + as prefix to add it at the end of the queue, - to remove the name from the front of it or only 0 to return to the main menu.");
             while (examineQueue)
             {
-                Console.WriteLine("Köns kapacitet är just nu: " + theQueue.); 
-                Console.WriteLine("Köns storlek är just nu: " + theQueue.Count);
                 string input = Console.ReadLine()!;
                 char nav = input[0];
                 string name = input.Substring(1);
@@ -151,6 +149,8 @@ Nej.
                         break;
                 }
             }
+            /* After debugging the queue, I saw that it behaves exactly as a list regarding the size (Count) and the capacity. Enqueuing is the same as Add in a list. Dequing is removing the first element in the queue (that is at index 0, in other words, that was enqueued earliest in order).
+             */
         }
 
         /// <summary>
