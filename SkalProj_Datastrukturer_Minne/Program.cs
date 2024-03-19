@@ -15,12 +15,16 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 5, 6, 7, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(0 - 9) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. Check Parenthesis"
+                    + "\n5. Check RecursiveFibonacci"
+                    + "\n6. Check IterativeFibonacci"
                     + "\n7. Reverse a Text"
+                    + "\n8. RecursiveEven"
+                    + "\n9. IterativeEven"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -46,21 +50,112 @@ namespace SkalProj_Datastrukturer_Minne
                     case '4':
                         CheckParanthesis();
                         break;
+                    case '5':
+                        RecursiveFibonacci();
+                        break;
+                    case '6':
+                        IterativeFibonacci();
+                        break;
                     case '7':
                         ReverseText();
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
+                    case '8':
+                        RecursiveEven();
+                        break;
+                    case '9':
+                        IterativeEven();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0 - 9)");
                         break;
                 }
             }
+        }
+
+        private static void IterativeFibonacci()
+        {
+            Console.WriteLine("Write a number to get its Fibonacci through iteration: ");
+            int input = int.Parse(Console.ReadLine()!);
+            Console.WriteLine(IterativeFibonacci(input));
+        }
+
+        private static int IterativeFibonacci(int n)
+        {
+            /* if (n == 0) return 0;
+            int[] cache = new int[n + 1];
+            cache[1] = 1;
+            for (int i = 2; i <= n; i++)
+            {
+                cache[i] = cache[i - 1] + cache[i - 2];
+            }
+            return cache[n]; */
+            if (n < 2)
+            {
+                return n;
+            }
+            int n1 = 1, n0 = 0;
+            for (int i = 2; i < n; i++)
+            {
+                int n2 = n1 + n0;
+                n0 = n1;
+                n1 = n2;
+            }
+            return n1 + n0;
+            /* Fråga: Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av ovanstående funktioner är mest minnesvänlig  och varför? 
+               Svar: Iteration då rekursion bygger up en anrop stack tills den når base fallet.
+            */
+        }
+
+        private static void IterativeEven()
+        {
+            Console.WriteLine("Write a number N to get the Nth even number through iteration: ");
+            int input = int.Parse(Console.ReadLine()!);
+            Console.WriteLine(IterativeEven(input));
+        }
+
+        private static int IterativeEven(int n)
+        {
+            int result = 0;
+            for (int i = 0; i < n - 1; i++)
+            {
+                result += 2;
+            }
+            return result;
+        }
+
+        private static void RecursiveFibonacci()
+        {
+            Console.WriteLine("Write a number to get its Fibonacci through recursion: ");
+            int input = int.Parse(Console.ReadLine()!);
+            Console.WriteLine(RecursiveFibonacci(input));
+        }
+
+        private static int RecursiveFibonacci(int n)
+        {
+            if (n == 1 || n == 0)
+            {
+                return n;
+            }
+            return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
+        }
+
+        private static void RecursiveEven()
+        {
+            Console.WriteLine("Write a number N to get the Nth even number through recursion: ");
+            int input = int.Parse(Console.ReadLine()!);
+            Console.WriteLine(RecursiveEven(input));
+        }
+
+        static int RecursiveEven(int n)
+        {
+            if (n == 1)
+            {
+                return 0;
+            }
+            return RecursiveEven(n - 1) + 2;
         }
 
         /// <summary>
@@ -277,7 +372,6 @@ Nej.
                 Console.WriteLine("Paranthesis in this string is Correct!");
             else Console.WriteLine("Paranthesis in this string is Incorrect!");
         }
-
     }
 }
 
